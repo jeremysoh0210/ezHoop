@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905404853653",
+    "project_id": "ez-hoop",
+    "storage_bucket": "ez-hoop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905404853653:android:fe6b6a63a9026ce574da9c",
+        "android_client_info": {
+          "package_name": "com.example.ezhoop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905404853653-c87it5j4rri90ilcj9rtg6hlut9or903.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKIFBi_jYZTIXYAWBdxTcIkDQLre3AfyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905404853653-c87it5j4rri90ilcj9rtg6hlut9or903.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
