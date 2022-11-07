@@ -75,14 +75,25 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseAuth firebaseAuth = ((App) getApplicationContext()).firebaseAuth;
 
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, task -> {
-            if (task.isSuccessful()) {
-                Intent intent = new Intent(context, MainActivity.class);
-                startActivity(intent);
-                finishAffinity();
-            } else {
-                Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(inputPassword.getText().toString().equals("") && inputEmail.getText().toString().equals("")){
+            onRestart();
+        }
+        else{
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, task -> {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+                } else {
+                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        this.recreate();
+        super.onRestart();
     }
 }
