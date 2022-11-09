@@ -1,10 +1,15 @@
 package com.example.ezhoop;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+
+import android.view.View;
+import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +26,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = ((App) getApplicationContext()).firebaseAuth;
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        context = this;
+        setupViews();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.btn_logout) {
             firebaseAuth.signOut();
             navigateToLogin();
+        }
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -51,5 +70,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finishAffinity();
+    }
+
+    private void setupViews() {
+        View start_training_btn = findViewById(R.id.start_training_btn);
+        start_training_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StartTrainingActivity.class);
+            startActivity(intent);
+        });
     }
 }

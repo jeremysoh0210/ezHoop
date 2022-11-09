@@ -8,6 +8,13 @@
     <string name="btn_register">Register</string>
     <string name="radio_male">Male</string>
     <string name="radio_female">Female</string>
+    <string name="btn_start_training">Start training</string>
     <string name="btn_forgot_password">Forgot Password?</string>
     <string name="btn_continue_as_guest">Continue As Guest</string>
+    <string name="btn_home">Home</string>
+    <string name="btn_statistic">Statistic</string>
+    <string name="btn_profile">Profile</string>
+    <string name="btn_photo">Photo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
