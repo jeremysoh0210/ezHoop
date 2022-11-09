@@ -49,6 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        btnForgotPassword = findViewById(R.id.btn_forgot_password);
+        btnForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
+
         setupTogglePassword();
     }
 
