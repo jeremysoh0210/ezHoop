@@ -25,6 +25,8 @@
     <string name="text_shooting">Shooting</string>
     <string name="btn_timer">3 Mins</string>
     <string name="btn_rounds">2 Rounds</string>
+    <string name="text_start_command">Say "START"  or press the START button to begin timer.</string>
+    <string name="text_start">Start</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
