@@ -18,6 +18,13 @@
     <string name="text_remember_password">Remember Password</string>
     <string name="btn_continue">Continue</string>
     <string name="text_enter_email">Email Address</string>
+    <string name="text_set_timer">Set Your Timer</string>
+    <string name="text_adjust_timer">Drag To Adjust Timer</string>
+    <string name="text_workout">Workout 1</string>
+    <string name="checkBox_record_session">Record Session</string>
+    <string name="text_shooting">Shooting</string>
+    <string name="btn_timer">3 Mins</string>
+    <string name="btn_rounds">2 Rounds</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
