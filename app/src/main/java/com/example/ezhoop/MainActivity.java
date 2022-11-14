@@ -73,5 +73,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(context, StartTrainingActivity.class);
             startActivity(intent);
         });
+
+        View btn_profile = findViewById(R.id.btn_profile);
+        btn_profile.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProfileActivity.class);
+            startActivity(intent);
+        });
     }
 }
