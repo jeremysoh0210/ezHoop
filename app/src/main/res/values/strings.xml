@@ -31,10 +31,10 @@
     <string name="btn_view_recording">View Recordings</string>
 
     <string name="text_profile_name">Louise O Connor</string>
-    <string name="text_shooting_average">Average Shooting Percentage</string>
+    <string name="text_shooting_average">Average \nShooting \nPercentage</string>
     <string name="text_shooting_percentage">37%</string>
     <string name="text_profile_email">louiseoconnor@gmail.com</string>
-    <string name="text_profile_location">Dundalk, CO.Louth</string>
-    <string name="text_profile_date_of_birth">June 6,2002</string>
+    <string name="text_profile_location">Dundalk, Co. Louth</string>
+    <string name="text_profile_date_of_birth">June 6, 2002</string>
     <string name="text_profile_gender">Female</string>
 </resources>
