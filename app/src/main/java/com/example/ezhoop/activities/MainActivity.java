@@ -8,8 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
-import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -54,12 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         fm.beginTransaction().add(R.id.fragment_container, fragmentProfile, "3").hide(fragmentProfile).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragmentStatistics, "2").hide(fragmentStatistics).commit();
         fm.beginTransaction().add(R.id.fragment_container, fragmentHome, "1").commit();
-
-//        Button btnStartTraining = findViewById(R.id.btn_start_training);
-//        btnStartTraining.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, StartTrainingActivity.class);
-//            startActivity(intent);
-//        });
     }
 
     @Override
@@ -92,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_options, menu);
+        inflater.inflate(R.menu.menu_top_options, menu);
         return true;
     }
 
