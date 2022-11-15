@@ -81,26 +81,20 @@ public class LoginActivity extends AppCompatActivity {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 
-        FirebaseAuth firebaseAuth = ((App) getApplicationContext()).firebaseAuth;
-
-        if (inputPassword.getText().toString().equals("") && inputEmail.getText().toString().equals("")) {
-            onRestart();
-        } else {
-            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, task -> {
-                if (task.isSuccessful()) {
-                    Intent intent = new Intent(context, MainActivity.class);
-                    startActivity(intent);
-                    finishAffinity();
-                } else {
-                    Toast.makeText(context, "Login failed.", Toast.LENGTH_SHORT).show();
-                }
-            });
+        if (email.equals("") || password.equals("")) {
+            Toast.makeText(context, "Email & password cannot be empty.", Toast.LENGTH_SHORT).show();
+            return;
         }
-    }
 
-    @Override
-    protected void onRestart() {
-        this.recreate();
-        super.onRestart();
+        FirebaseAuth firebaseAuth = ((App) getApplicationContext()).firebaseAuth;
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, task -> {
+            if (task.isSuccessful()) {
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+                finishAffinity();
+            } else {
+                Toast.makeText(context, "Login failed.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
