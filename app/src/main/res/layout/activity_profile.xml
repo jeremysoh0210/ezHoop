@@ -6,4 +6,157 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <EditText
+        android:id="@+id/text_line2"
+        android:layout_width="410dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_name" />
+
+    <Button
+        android:id="@+id/btn_view_recording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/btn_view_recording"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_profile_name"
+        android:layout_width="79dp"
+        android:layout_height="98dp"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/text_profile_name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_view_recording"
+        app:layout_constraintEnd_toStartOf="@+id/btn_view_recording"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_view_recording" />
+
+    <TextView
+        android:id="@+id/text_shooting_average"
+        android:layout_width="143dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="32dp"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/text_shooting_average"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_view_recording"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_shooting_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_shooting_percentage"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/text_shooting_average"
+        app:layout_constraintStart_toStartOf="@+id/text_shooting_average"
+        app:layout_constraintTop_toBottomOf="@+id/text_shooting_average" />
+
+    <TextView
+        android:id="@+id/text_profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/text_profile_email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_line2" />
+
+    <TextView
+        android:id="@+id/text_profile_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_profile_location"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/text_profile_email"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_email" />
+
+    <TextView
+        android:id="@+id/text_profile_date_of_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_profile_date_of_birth"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/text_profile_location"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_location" />
+
+    <TextView
+        android:id="@+id/text_profile_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_profile_gender"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/text_profile_date_of_birth"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_date_of_birth" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_profile_email"
+        app:layout_constraintEnd_toStartOf="@+id/text_profile_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_profile_email"
+        app:srcCompat="@drawable/email" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_profile_location"
+        app:layout_constraintEnd_toStartOf="@+id/text_profile_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_profile_location"
+        app:srcCompat="@drawable/location" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_profile_date_of_birth"
+        app:layout_constraintEnd_toStartOf="@+id/text_profile_date_of_birth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_profile_date_of_birth"
+        app:srcCompat="@drawable/dob" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_profile_gender"
+        app:layout_constraintEnd_toStartOf="@+id/text_profile_gender"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_profile_gender"
+        app:srcCompat="@drawable/profile" />
 </androidx.constraintlayout.widget.ConstraintLayout>
