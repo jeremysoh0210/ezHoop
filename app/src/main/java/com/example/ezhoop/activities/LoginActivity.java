@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private Context context;
-    
+
     private EditText inputEmail, inputPassword;
     private Button btnLogin, btnLoginAsGuest, btnForgotPassword, btnRegister;
     private ImageButton btnTogglePassword;
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         context = this;
-        
+
         setupViews();
     }
 
@@ -83,17 +83,16 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseAuth firebaseAuth = ((App) getApplicationContext()).firebaseAuth;
 
-        if(inputPassword.getText().toString().equals("") && inputEmail.getText().toString().equals("")){
+        if (inputPassword.getText().toString().equals("") && inputEmail.getText().toString().equals("")) {
             onRestart();
-        }
-        else{
+        } else {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((Activity) context, task -> {
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                     finishAffinity();
                 } else {
-                    Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Login failed.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
