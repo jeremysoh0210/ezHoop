@@ -1,4 +1,4 @@
-package com.example.ezhoop;
+package com.example.ezhoop.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ezhoop.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 

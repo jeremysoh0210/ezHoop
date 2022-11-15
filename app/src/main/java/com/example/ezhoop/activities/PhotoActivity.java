@@ -1,14 +1,16 @@
-package com.example.ezhoop;
+package com.example.ezhoop.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class StatisticActivity extends AppCompatActivity {
+import com.example.ezhoop.R;
+
+public class PhotoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistic);
+        setContentView(R.layout.activity_photo);
     }
 }

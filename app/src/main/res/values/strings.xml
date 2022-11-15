@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ezHoop</string>
+
     <string name="btn_login">Login</string>
     <string name="btn_logout">Logout</string>
     <string name="text_or">OR</string>
@@ -8,16 +9,16 @@
     <string name="btn_register">Register</string>
     <string name="radio_male">Male</string>
     <string name="radio_female">Female</string>
-    <string name="btn_start_training">Start training</string>
+
+    <string name="btn_start_training">Start Training</string>
     <string name="btn_forgot_password">Forgot Password?</string>
     <string name="btn_continue_as_guest">Continue As Guest</string>
     <string name="btn_home">Home</string>
-    <string name="btn_statistic">Statistic</string>
+    <string name="btn_statistics">Statistics</string>
     <string name="btn_profile">Profile</string>
     <string name="btn_photo">Photo</string>
-    <string name="text_remember_password">Remember Password</string>
     <string name="btn_continue">Continue</string>
-    <string name="text_enter_email">Email Address</string>
+
     <string name="text_set_timer">Set Your Timer</string>
     <string name="text_adjust_timer">Drag To Adjust Timer</string>
     <string name="text_workout">Workout 1</string>
@@ -25,18 +26,15 @@
     <string name="text_shooting">Shooting</string>
     <string name="btn_timer">3 Mins</string>
     <string name="btn_rounds">2 Rounds</string>
-    <string name="text_start_command">Say "START"  or press the START button to begin timer.</string>
+    <string name="text_start_command">Say "START" or press the START button to begin timer.</string>
     <string name="text_start">Start</string>
     <string name="btn_view_recording">View Recordings</string>
+
     <string name="text_profile_name">Louise O Connor</string>
-    <string name="text_shooting_average">   Average
-    Shooting
-    Percentage</string>
+    <string name="text_shooting_average">Average Shooting Percentage</string>
     <string name="text_shooting_percentage">37%</string>
     <string name="text_profile_email">louiseoconnor@gmail.com</string>
     <string name="text_profile_location">Dundalk, CO.Louth</string>
     <string name="text_profile_date_of_birth">June 6,2002</string>
     <string name="text_profile_gender">Female</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

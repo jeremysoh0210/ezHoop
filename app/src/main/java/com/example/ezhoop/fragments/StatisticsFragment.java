@@ -1,4 +1,4 @@
-package com.example.ezhoop;
+package com.example.ezhoop.fragments;
 
 import android.os.Bundle;
 
@@ -8,29 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ezhoop.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FirstFragment#newInstance} factory method to
+ * Use the {@link StatisticsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FirstFragment extends Fragment {
+public class StatisticsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "home";
-    private static final String ARG_PARAM2 = "photo";
-    private static final String ARG_PARAM3 = "statistic";
-    private static final String ARG_PARAM4 = "profile";
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String home;
-    private String photo;
-    private String statistic;
-    private String profile;
+    private String mParam1;
+    private String mParam2;
 
-    public FirstFragment() {
+    public StatisticsFragment() {
         // Required empty public constructor
-        newInstance(home,photo,statistic,profile);
     }
 
     /**
@@ -39,16 +36,14 @@ public class FirstFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstFragment.
+     * @return A new instance of fragment StatisticsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FirstFragment newInstance(String param1, String param2,String param3, String param4) {
-        FirstFragment fragment = new FirstFragment();
+    public static StatisticsFragment newInstance(String param1, String param2) {
+        StatisticsFragment fragment = new StatisticsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
-        args.putString(ARG_PARAM3, param3);
-        args.putString(ARG_PARAM4, param4);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,10 +52,8 @@ public class FirstFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            home = getArguments().getString(ARG_PARAM1);
-            photo = getArguments().getString(ARG_PARAM2);
-            statistic = getArguments().getString(ARG_PARAM3);
-            profile = getArguments().getString(ARG_PARAM4);
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -68,6 +61,6 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.ezhoop;
+package com.example.ezhoop.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +14,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ezhoop.R;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText inputFullName,inputEmailAddress, inputPassword;
