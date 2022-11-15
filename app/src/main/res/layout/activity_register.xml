@@ -15,19 +15,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="245dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:text="@string/btn_register"
-                app:cornerRadius="17dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="223dp"
+                android:layout_marginTop="32dp"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_gender" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/text_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Full Name"
+                android:textColor="#514F4F"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/input_full_name"
+                app:layout_constraintStart_toStartOf="@+id/input_full_name" />
 
             <EditText
                 android:id="@+id/input_full_name"
@@ -40,7 +48,7 @@
                 android:elevation="5dp"
                 android:ems="10"
                 android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:padding="11dp"
                 android:singleLine="true"
                 android:textColor="#A69A9A"
@@ -48,7 +56,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+            <TextView
+                android:id="@+id/text_email_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Email Address"
+                android:textColor="#514F4F"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/input_email"
+                app:layout_constraintStart_toStartOf="@+id/input_email" />
 
             <EditText
                 android:id="@+id/input_email"
@@ -71,8 +90,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_full_name" />
 
+            <TextView
+                android:id="@+id/text_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Password"
+                android:textColor="#514F4F"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/input_password"
+                app:layout_constraintStart_toStartOf="@+id/input_password" />
+
             <EditText
-                android:id="@+id/input_password1"
+                android:id="@+id/input_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -82,7 +112,7 @@
                 android:elevation="5dp"
                 android:ems="10"
                 android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="11dp"
                 android:singleLine="true"
                 android:textColor="#A69A9A"
@@ -93,48 +123,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/input_email" />
 
             <TextView
-                android:id="@+id/text_password"
+                android:id="@+id/text_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Password"
+                android:text="Country"
                 android:textColor="#514F4F"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/input_password1"
-                app:layout_constraintStart_toStartOf="@+id/input_password1" />
+                app:layout_constraintBottom_toTopOf="@+id/input_country"
+                app:layout_constraintStart_toStartOf="@+id/input_country" />
 
-            <TextView
-                android:id="@+id/text_full_name"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/input_country"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Full Name"
-                android:textColor="#514F4F"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/input_full_name"
-                app:layout_constraintStart_toStartOf="@+id/input_full_name" />
-
-            <TextView
-                android:id="@+id/text_email_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Email Address"
-                android:textColor="#514F4F"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/input_email"
-                app:layout_constraintStart_toStartOf="@+id/input_email" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="223dp"
-                android:layout_marginTop="32dp"
-                android:adjustViewBounds="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/input_white"
+                android:elevation="5dp"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="textPostalAddress"
+                android:padding="11dp"
+                android:singleLine="true"
+                android:textColor="#A69A9A"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo" />
+                app:layout_constraintTop_toBottomOf="@+id/input_password" />
 
             <TextView
                 android:id="@+id/text_date_of_birth"
@@ -158,9 +176,9 @@
                 android:spinnersShown="true"
                 android:theme="@style/DatePicker"
                 android:yearListSelectorColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/input_password1"
-                app:layout_constraintStart_toStartOf="@+id/input_password1"
-                app:layout_constraintTop_toBottomOf="@+id/input_password1" />
+                app:layout_constraintEnd_toEndOf="@+id/input_password"
+                app:layout_constraintStart_toStartOf="@+id/input_password"
+                app:layout_constraintTop_toBottomOf="@+id/input_country" />
 
             <RadioGroup
                 android:id="@+id/input_gender"
@@ -203,6 +221,20 @@
                     app:layout_constraintStart_toEndOf="@+id/radio_male"
                     app:layout_constraintTop_toBottomOf="@+id/input_date_of_birth" />
             </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/btn_register"
+                app:cornerRadius="17dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_gender" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
