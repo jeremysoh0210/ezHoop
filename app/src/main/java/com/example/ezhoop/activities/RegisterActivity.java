@@ -2,9 +2,7 @@ package com.example.ezhoop.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,13 +114,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 db.collection("users").document(uid).set(data)
                         .addOnSuccessListener(documentReference -> {
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                            prefs.edit()
-                                    .putString("fullName", fullName)
-                                    .putString("dateOfBirth", dateOfBirth)
-                                    .putString("gender", gender)
-                                    .putString("country", country)
-                                    .apply();
+//                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+//                            prefs.edit()
+//                                    .putString("fullName", fullName)
+//                                    .putString("dateOfBirth", dateOfBirth)
+//                                    .putString("gender", gender)
+//                                    .putString("country", country)
+//                                    .apply();
 
                             Intent intent = new Intent(context, MainActivity.class);
                             startActivity(intent);

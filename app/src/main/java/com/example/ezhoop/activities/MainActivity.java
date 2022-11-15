@@ -3,6 +3,7 @@ package com.example.ezhoop.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,15 +25,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
-    private FirebaseAuth firebaseAuth;
     private Context context;
+    private FirebaseAuth firebaseAuth;
+    public FirebaseUser currentUser;
 
     private BottomNavigationView navBottom;
-    private final Fragment fragmentHome = new HomeFragment();
-    private final Fragment fragmentStatistics = new StatisticsFragment();
-    private final Fragment fragmentProfile = new ProfileFragment();
+    private Fragment fragmentHome;
+    private Fragment fragmentStatistics;
+    private Fragment fragmentProfile;
     private final FragmentManager fm = getSupportFragmentManager();
-    private Fragment active = fragmentHome;
+    private Fragment active = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private void setupViews() {
         navBottom = findViewById(R.id.nav_bottom);
         navBottom.setOnItemSelectedListener(this);
-
-        fm.beginTransaction().add(R.id.fragment_container, fragmentProfile, "3").hide(fragmentProfile).commit();
-        fm.beginTransaction().add(R.id.fragment_container, fragmentStatistics, "2").hide(fragmentStatistics).commit();
-        fm.beginTransaction().add(R.id.fragment_container, fragmentHome, "1").commit();
     }
 
     @Override
@@ -103,11 +101,24 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     }
 
     public void onStart() {
+        Log.d("Test", "onStart: HELLO");
         super.onStart();
 
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        currentUser = firebaseAuth.getCurrentUser();
         if (currentUser == null) {
             navigateToLogin();
+        }
+
+        if (active == null) {
+            fragmentHome = new HomeFragment();
+            fragmentStatistics = new StatisticsFragment();
+            fragmentProfile = new ProfileFragment();
+
+            fm.beginTransaction().add(R.id.fragment_container, fragmentProfile, "3").hide(fragmentProfile).commit();
+            fm.beginTransaction().add(R.id.fragment_container, fragmentStatistics, "2").hide(fragmentStatistics).commit();
+            fm.beginTransaction().add(R.id.fragment_container, fragmentHome, "1").commit();
+
+            active = fragmentHome;
         }
     }
 }
