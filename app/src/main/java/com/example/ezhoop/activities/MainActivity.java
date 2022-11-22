@@ -101,24 +101,23 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     }
 
     public void onStart() {
-        Log.d("Test", "onStart: HELLO");
         super.onStart();
 
         currentUser = firebaseAuth.getCurrentUser();
         if (currentUser == null) {
             navigateToLogin();
-        }
+        } else {
+            if (active == null) {
+                fragmentHome = new HomeFragment();
+                fragmentStatistics = new StatisticsFragment();
+                fragmentProfile = new ProfileFragment();
 
-        if (active == null) {
-            fragmentHome = new HomeFragment();
-            fragmentStatistics = new StatisticsFragment();
-            fragmentProfile = new ProfileFragment();
+                fm.beginTransaction().add(R.id.fragment_container, fragmentProfile, "3").hide(fragmentProfile).commit();
+                fm.beginTransaction().add(R.id.fragment_container, fragmentStatistics, "2").hide(fragmentStatistics).commit();
+                fm.beginTransaction().add(R.id.fragment_container, fragmentHome, "1").commit();
 
-            fm.beginTransaction().add(R.id.fragment_container, fragmentProfile, "3").hide(fragmentProfile).commit();
-            fm.beginTransaction().add(R.id.fragment_container, fragmentStatistics, "2").hide(fragmentStatistics).commit();
-            fm.beginTransaction().add(R.id.fragment_container, fragmentHome, "1").commit();
-
-            active = fragmentHome;
+                active = fragmentHome;
+            }
         }
     }
 }
