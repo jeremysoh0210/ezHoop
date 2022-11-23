@@ -22,4 +22,6 @@ public class App extends Application {
     public App getInstance() {
         return singleton;
     }
+
+
 }

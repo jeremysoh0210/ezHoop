@@ -37,4 +37,8 @@
     <string name="text_profile_location">Dundalk, Co. Louth</string>
     <string name="text_profile_date_of_birth">June 6, 2002</string>
     <string name="text_profile_gender">Female</string>
+
+    <string name="text_statistic">Statistic</string>
+    <string name="btn_view_players">View More Players</string>
+    <string name="btn_view_recordings">View Recording</string>
 </resources>

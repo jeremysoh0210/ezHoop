@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         return super.onOptionsItemSelected(item);
     }
 
+
+
     public void onStart() {
         super.onStart();
 
