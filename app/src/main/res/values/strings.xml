@@ -27,7 +27,8 @@
     <string name="btn_timer">3 Mins</string>
     <string name="btn_rounds">2 Rounds</string>
     <string name="text_start_command">Say "START" or press the START button to begin timer.</string>
-    <string name="text_start">Start</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_end">End</string>
     <string name="btn_view_recording">View Recordings</string>
 
     <string name="text_profile_name">Louise O Connor</string>
@@ -41,4 +42,5 @@
     <string name="text_statistic">Statistic</string>
     <string name="btn_view_players">View More Players</string>
     <string name="btn_view_recordings">View Recording</string>
+
 </resources>

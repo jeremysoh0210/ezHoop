@@ -1,30 +1,26 @@
 package com.example.ezhoop.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.ezhoop.R;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
 import com.pubnub.api.PubNubException;
 import com.pubnub.api.UserId;
-import com.pubnub.api.callbacks.PNCallback;
 import com.pubnub.api.callbacks.SubscribeCallback;
 import com.pubnub.api.enums.PNStatusCategory;
-import com.pubnub.api.models.consumer.PNPublishResult;
 import com.pubnub.api.models.consumer.PNStatus;
 import com.pubnub.api.models.consumer.objects_api.channel.PNChannelMetadataResult;
 import com.pubnub.api.models.consumer.objects_api.membership.PNMembershipResult;
@@ -37,15 +33,19 @@ import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResu
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
 public class StartTrainingActivity extends AppCompatActivity {
-    private static final String CHANNEL_NAME = "test";
+    private static final String CHANNEL_GAME = "game";
+    private static final String CHANNEL_SCORE = "score";
 
     private PNConfiguration pnConfiguration;
     private PubNub pubnub;
+    private boolean isGameRunning = false;
+    private int score;
+
+    private TextView textScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,35 @@ public class StartTrainingActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         setupPubnub();
+
+        textScore = findViewById(R.id.score);
+
+        Button btnStart = findViewById(R.id.btn_start);
+        btnStart.setOnClickListener(v -> {
+            pubnub.publish().channel(CHANNEL_GAME).message(!isGameRunning ? "start" : "end").async((result, status1) -> {
+                if (!status1.isError()) {
+                    if (!isGameRunning) {
+                        isGameRunning = true;
+                        score = 0;
+                        btnStart.setText(getString(R.string.btn_end));
+                    } else {
+                        isGameRunning = false;
+                        btnStart.setText(getString(R.string.btn_start));
+                        textScore.setText("");
+
+                        runOnUiThread(() -> {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setTitle("Game finished!");
+                            builder.setMessage("Scored " + score + " in total.");
+                            builder.setPositiveButton("Okay", null);
+                            builder.show();
+                        });
+                    }
+                } else {
+
+                }
+            });
+        });
     }
 
     private void setupPubnub() {
@@ -65,9 +94,6 @@ public class StartTrainingActivity extends AppCompatActivity {
             pnConfiguration.setPublishKey("pub-c-c1b540b3-d0af-4fea-8316-245dc2589f12");
 
             pubnub = new PubNub(pnConfiguration);
-
-            JsonObject messageJsonObject = new JsonObject();
-            messageJsonObject.addProperty("msg", "hello");
 
             pubnub.addListener(new SubscribeCallback() {
                 @Override
@@ -80,7 +106,7 @@ public class StartTrainingActivity extends AppCompatActivity {
                         // UI / internal notifications, etc
 
                         if (status.getCategory() == PNStatusCategory.PNConnectedCategory) {
-//                            pubnub.publish().channel(CHANNEL_NAME).message(messageJsonObject).async((result, status1) -> {
+//                            pubnub.publish().channel(CHANNEL_SCORE).message("start").async((result, status1) -> {
 //                                // Check whether request successfully completed or not.
 //                                if (!status1.isError()) {
 //                                    // Message successfully published to specified channel.
@@ -115,7 +141,10 @@ public class StartTrainingActivity extends AppCompatActivity {
                     }
 
                     JsonElement receivedMessageObject = message.getMessage();
-                    Log.d("test", "message: " + receivedMessageObject.toString());
+                    score = Integer.parseInt(receivedMessageObject.toString());
+                    runOnUiThread(() -> {
+                        textScore.setText("Scored: " + score);
+                    });
                     // extract desired parts of the payload, using Gson
 //                    String msg = message.getMessage().getAsJsonObject().get("msg").getAsString();
 //                    System.out.println("msg content: " + msg);
@@ -164,11 +193,13 @@ public class StartTrainingActivity extends AppCompatActivity {
                 }
             });
 
-            pubnub.subscribe().channels(Collections.singletonList(CHANNEL_NAME)).execute();
+            pubnub.subscribe().channels(Collections.singletonList(CHANNEL_SCORE)).execute();
         } catch (PubNubException e) {
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

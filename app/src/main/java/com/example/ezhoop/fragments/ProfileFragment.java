@@ -55,27 +55,29 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getData() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String uid = ((MainActivity) context).currentUser.getUid();
+        if (context != null) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String uid = ((MainActivity) context).currentUser.getUid();
 
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    Map<String, Object> data = document.getData();
+            DocumentReference docRef = db.collection("users").document(uid);
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String, Object> data = document.getData();
 
-                    name.setText(data.get("fullName").toString());
-                    email.setText(((MainActivity) context).currentUser.getEmail());
-                    location.setText(data.get("country").toString());
-                    dateOfBirth.setText(data.get("dateOfBirth").toString());
-                    gender.setText(data.get("gender").toString());
+                        name.setText(data.get("fullName").toString());
+                        email.setText(((MainActivity) context).currentUser.getEmail());
+                        location.setText(data.get("country").toString());
+                        dateOfBirth.setText(data.get("dateOfBirth").toString());
+                        gender.setText(data.get("gender").toString());
+                    } else {
+                        Log.e("Error", "No such document");
+                    }
                 } else {
-                    Log.e("Error", "No such document");
+                    Log.e("Error", "Failed to get data: ", task.getException());
                 }
-            } else {
-                Log.e("Error", "Failed to get data: ", task.getException());
-            }
-        });
+            });
+        }
     }
 }

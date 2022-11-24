@@ -37,12 +37,12 @@
         app:layout_constraintTop_toBottomOf="@+id/text_shooting" />
 
     <Button
-        android:id="@+id/btn_rounds2"
+        android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:cornerRadius="14dp"
-        android:text="@string/text_start"
+        android:text="@string/btn_start"
         app:layout_constraintBottom_toBottomOf="@+id/text_start_command"
         app:layout_constraintStart_toEndOf="@+id/text_start_command"
         app:layout_constraintTop_toTopOf="@+id/text_start_command" />
@@ -131,5 +131,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_rounds" />
 
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Scored: 5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
