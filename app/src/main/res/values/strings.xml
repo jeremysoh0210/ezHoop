@@ -42,5 +42,8 @@
     <string name="text_statistic">Statistic</string>
     <string name="btn_view_players">View More Players</string>
     <string name="btn_view_recordings">View Recording</string>
+    <string name="text_shots">Shots</string>
+    <string name="text_missed">Missed</string>
+    <string name="text_percentages">Percentages</string>
 
 </resources>

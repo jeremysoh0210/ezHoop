@@ -5,13 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.StatisticsFragment">
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="-31dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <SearchView
         android:id="@+id/search_view"
@@ -31,6 +40,7 @@
         android:background="@null"
         android:ems="10"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:text="@string/btn_statistics"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -41,24 +51,13 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="382dp"
+        android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginTop="32dp"
         android:background="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_view" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="382dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/purple_500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_view_recording1" />
 
     <Button
         android:id="@+id/btn_view_players"
@@ -78,14 +77,6 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_view_recording"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="80dp"
@@ -96,193 +87,83 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="83dp"
-        android:layout_height="93dp"
-        android:src="@drawable/ppl3"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="25"
-        android:textAlignment="center"
+    <TextView
+        android:id="@+id/text_shotsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="20"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/text_shots"
+        app:layout_constraintStart_toStartOf="@+id/text_shots"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName8"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="20"
-        android:textAlignment="center"
+    <TextView
+        android:id="@+id/text_missedNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName9"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        app:layout_constraintEnd_toEndOf="@+id/text_missed"
+        app:layout_constraintStart_toStartOf="@+id/text_missed"
+        app:layout_constraintTop_toTopOf="@+id/text_shotsNumber" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Shots"
+    <TextView
+        android:id="@+id/text_percentageNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50.0%"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/text_percentages"
+        app:layout_constraintStart_toStartOf="@+id/text_percentages"
+        app:layout_constraintTop_toTopOf="@+id/text_missedNumber" />
+
+    <TextView
+        android:id="@+id/text_shots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/text_shots"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName6"
         app:layout_constraintStart_toEndOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName11"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Shots"
+    <TextView
+        android:id="@+id/text_missed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_missed"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName12"
-        app:layout_constraintStart_toEndOf="@+id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_shots"
+        app:layout_constraintEnd_toStartOf="@+id/text_percentages"
+        app:layout_constraintStart_toEndOf="@+id/text_shots" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName12"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="13dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Missed"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName13" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName13"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
+    <TextView
+        android:id="@+id/text_percentages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Precentages"
+        android:text="@string/text_percentages"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName12"
-        app:layout_constraintEnd_toEndOf="@+id/view2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName6"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="13dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Missed"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName7" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName7"
-        android:layout_width="82dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Percentages"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/text_missed"
         app:layout_constraintEnd_toEndOf="@+id/view" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="35"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toTopOf="@+id/view" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName9"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="10"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName10"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="41.6%"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName10"
-        android:layout_width="80dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="50.0%"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
