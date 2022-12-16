@@ -19,14 +19,12 @@
     <string name="btn_photo">Photo</string>
     <string name="btn_continue">Continue</string>
 
-    <string name="text_set_timer">Set Your Timer</string>
-    <string name="text_adjust_timer">Drag To Adjust Timer</string>
-    <string name="text_workout">Workout 1</string>
-    <string name="checkBox_record_session">Record Session</string>
+    <string name="text_set_timer">Set Your Target Score</string>
     <string name="text_shooting">Shooting</string>
     <string name="btn_timer">3 Mins</string>
     <string name="btn_rounds">2 Rounds</string>
-    <string name="text_start_command">Say "START" or press the START button to begin timer.</string>
+    <string name="text_start_command">Press the <b>Start</b> button to begin.</string>
+    <string name="text_end_command">Press the <b>End</b> button to finish.</string>
     <string name="btn_start">Start</string>
     <string name="btn_end">End</string>
     <string name="btn_view_recording">View Recordings</string>

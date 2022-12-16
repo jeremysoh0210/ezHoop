@@ -4,14 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ezhoop.R;
 import com.google.gson.JsonElement;
@@ -33,19 +35,26 @@ import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResu
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
 public class StartTrainingActivity extends AppCompatActivity {
     private static final String CHANNEL_GAME = "game";
     private static final String CHANNEL_SCORE = "score";
+    private static final String CHANNEL_MISS = "miss";
+
+    private final String[] targetScoreArray = new String[]{"5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100"};
 
     private PNConfiguration pnConfiguration;
     private PubNub pubnub;
     private boolean isGameRunning = false;
-    private int score;
+    private int score, miss, target;
 
-    private TextView textScore;
+    private ConstraintLayout layoutSetup, layoutScore;
+    private NumberPicker targetScore;
+    private TextView instructions, scoreTitle, textScore, textMiss;
+    private Button btnStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +63,53 @@ public class StartTrainingActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Training");
 
-        setupPubnub();
+        layoutSetup = findViewById(R.id.layout_setup);
+        layoutScore = findViewById(R.id.layout_score);
 
+        targetScore = findViewById(R.id.target_score);
+        targetScore.setMinValue(0);
+        targetScore.setMaxValue(targetScoreArray.length - 1);
+        targetScore.setDisplayedValues(targetScoreArray);
+        targetScore.setWrapSelectorWheel(false);
+        targetScore.setOnValueChangedListener((numberPicker, i, i1) -> {
+            int value = targetScore.getValue();
+
+        });
+
+        scoreTitle = findViewById(R.id.score_title);
         textScore = findViewById(R.id.score);
+        textMiss = findViewById(R.id.miss);
 
-        Button btnStart = findViewById(R.id.btn_start);
+        instructions = findViewById(R.id.instructions);
+
+        btnStart = findViewById(R.id.btn_start);
         btnStart.setOnClickListener(v -> {
             pubnub.publish().channel(CHANNEL_GAME).message(!isGameRunning ? "start" : "end").async((result, status1) -> {
                 if (!status1.isError()) {
                     if (!isGameRunning) {
                         isGameRunning = true;
                         score = 0;
+                        miss = 0;
+                        target = Integer.parseInt(targetScoreArray[targetScore.getValue()]);
+
+                        instructions.setText(getString(R.string.text_end_command));
                         btnStart.setText(getString(R.string.btn_end));
+
+                        scoreTitle.setText("Game of " + target);
+                        updateScoreMiss();
+
+                        layoutSetup.setVisibility(View.GONE);
+                        layoutScore.setVisibility(View.VISIBLE);
                     } else {
                         isGameRunning = false;
+
+                        instructions.setText(getString(R.string.text_start_command));
                         btnStart.setText(getString(R.string.btn_start));
-                        textScore.setText("");
+
+                        layoutSetup.setVisibility(View.VISIBLE);
+                        layoutScore.setVisibility(View.GONE);
 
                         runOnUiThread(() -> {
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -85,6 +124,8 @@ public class StartTrainingActivity extends AppCompatActivity {
                 }
             });
         });
+
+        setupPubnub();
     }
 
     private void setupPubnub() {
@@ -140,11 +181,22 @@ public class StartTrainingActivity extends AppCompatActivity {
                         // message.getSubscription()
                     }
 
-                    JsonElement receivedMessageObject = message.getMessage();
-                    score = Integer.parseInt(receivedMessageObject.toString());
+                    String messageChannel = message.getChannel();
+                    JsonElement messageContent = message.getMessage();
+                    if (messageChannel.equals("score")) {
+                        score = Integer.parseInt(messageContent.toString());
+                    } else if (messageChannel.equals("miss")) {
+                        miss = Integer.parseInt(messageContent.toString());
+                    }
+
                     runOnUiThread(() -> {
-                        textScore.setText("Scored: " + score);
+                        updateScoreMiss();
+
+                        if (score + miss == target) {
+                            endGame();
+                        }
                     });
+
                     // extract desired parts of the payload, using Gson
 //                    String msg = message.getMessage().getAsJsonObject().get("msg").getAsString();
 //                    System.out.println("msg content: " + msg);
@@ -193,13 +245,21 @@ public class StartTrainingActivity extends AppCompatActivity {
                 }
             });
 
-            pubnub.subscribe().channels(Collections.singletonList(CHANNEL_SCORE)).execute();
+            pubnub.subscribe().channels(Arrays.asList(CHANNEL_SCORE, CHANNEL_MISS)).execute();
+
         } catch (PubNubException e) {
             e.printStackTrace();
         }
     }
 
+    private void updateScoreMiss() {
+        textScore.setText("Scored: " + score);
+        textMiss.setText("Missed: " + miss);
+    }
 
+    private void endGame() {
+        btnStart.performClick();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

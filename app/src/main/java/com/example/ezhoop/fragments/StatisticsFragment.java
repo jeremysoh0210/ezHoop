@@ -98,7 +98,7 @@ public class StatisticsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        getData();
+//        getData();
     }
 
     @Override
